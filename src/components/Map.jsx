@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 export default function Map() {
-  const NAVER_CLIENT_ID = "2p9duc0yre";
+  const NAVER_CLIENT_ID = import.meta.env.VITE_NAVER_CLIENT_ID;
 
   const mapRef = useRef(null);
   const mapInitializedRef = useRef(false);
