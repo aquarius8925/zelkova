@@ -10,7 +10,8 @@ import Notice from './components/Notice';
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="w-full min-h-screen bg-white flex flex-col justify-between">
+      {/* 🔴 중요: overflow-x-hidden을 추가하여 하위 요소가 우측으로 터지는 현상을 원천 방어합니다 */}
+      <div className="w-full min-h-screen bg-white flex flex-col justify-between overflow-x-hidden">
         <Header />
         
         <div className="flex-1 w-full">

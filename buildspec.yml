@@ -10,8 +10,8 @@ phases:
   pre_build:
     commands:
       - echo Creating .env file from AWS Environment Variables...
-      - echo "VITE_API_KEY=${VITE_API_KEY}" >> .env
-      - echo "VITE_ANOTHER_VAR=${VITE_ANOTHER_VAR}" >> .env
+      - echo "VITE_SUPABASE_URL=${VITE_SUPABASE_URL}" >> .env
+      - echo "VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}" >> .env
   build:
     commands:
       - echo Build started on `date`
