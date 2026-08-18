@@ -15,8 +15,8 @@ export default function Notice() {
   const POSTS_PER_PAGE = 10;
 
   // 💡 Google Blogger 블로그 ID와 API Key
-  const BLOG_ID = "8862678397536301499";
-  const API_KEY = "AIzaSyAjKww9ohLyuFQV9UiaPTZ2rh4JvogRtvc";
+  const BLOG_ID = import.meta.env.VITE_BLOGGER_BLOG_ID;
+  const API_KEY = import.meta.env.VITE_BLOGGER_API_KEY;
 
   useEffect(() => {
     console.log("Blogger 게시글 불러오기 시작");
