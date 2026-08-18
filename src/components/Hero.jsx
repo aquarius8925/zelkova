@@ -40,12 +40,12 @@ export default function Hero() {
         
         {/* 2. 메인 타이틀 (데스크톱/모바일 각각 최적의 위치에서 반응형 줄바꿈 처리) */}
         <div className="flex flex-col items-center gap-3 max-w-full">
-          <h1 className="text-2xl sm:text-3xl md:text-5xl font-sans font-black tracking-tight leading-tight text-slate-900 break-keep px-2">
-            느티나무 그늘 
-            <br className="block md:hidden" /> 
-            아래
+          {/* 🔴 [핵심 수정] leading-tight를 강제 부여하고, 모바일에서 글자가 자연스럽게 줄바꿈되도록 단순화 */}
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-sans font-black tracking-tight text-slate-900 break-keep px-4 text-center leading-[1.3] md:leading-tight">
+            느티나무 그늘 아래
+            {/* 💻 데스크톱 웹 화면 전용 줄바꿈: PC에서는 '아래' 뒤에서만 줄바꿈 적용 */}
             <br className="hidden md:block" /> 
-            편안한 쉼터가 되어드리겠습니다
+            {" "}편안한 쉼터가 되어드리겠습니다
           </h1>
         </div>
         

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom'; // 실제 react-router-dom 등 질문자님 패키지 명칭에 맞춤
+import { Link as RouterLink } from 'react-router-dom'; // 기존 사용하시던 라우터 링크 임포트 유지용
 
 export default function Header() {
   const location = useLocation();
@@ -30,11 +31,15 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-stone-200 shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 h-24 flex items-center justify-between gap-4">
+      {/* 📱 모바일 터짐을 원천 방지하기 위해 h-20 가변 조절 및 최외곽 유연한 간격 확보 */}
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 h-20 sm:h-24 flex items-center justify-between gap-1 sm:gap-4 w-full">
         
-        <Link to="/" className="flex items-center gap-2 flex-shrink-0 cursor-pointer z-50">
-          <img src="/images/logo-symbol-silhouette.png" alt="느티나무 심볼" className="h-12 w-auto object-contain" />
-          <img src="/images/logo-text-green.png" alt="느티나무재가복지센터" className="h-8 w-auto object-contain ml-0.5" />
+        {/* 📱 모바일에서 로고가 전체 화면의 절반(max-w-[52%])을 넘지 않도록 안전 가이드라인 추가 */}
+        <Link to="/" className="flex items-center gap-1 sm:gap-2 flex-shrink cursor-pointer z-50 max-w-[52%] sm:max-w-none min-w-0">
+          {/* 심볼 이미지 모바일 축소 세팅 */}
+          <img src="/images/logo-symbol-silhouette.png" alt="느티나무 심볼" className="h-8 sm:h-12 w-auto object-contain flex-shrink-0" />
+          {/* 🔴 [가장 핵심 수정] 글자 로고가 폰 화면에 맞춰 자동으로 자연스럽게 줄어들도록 flex-shrink 및 min-w-0 주입 */}
+          <img src="/images/logo-text-green.png" alt="느티나무재가복지센터" className="h-5 sm:h-8 w-auto object-contain ml-0.5 min-w-0 flex-shrink" />
         </Link>
 
         {/* hidden md:flex에서 hidden lg:flex로 변경 */}
@@ -70,23 +75,26 @@ export default function Header() {
         </nav>
 
         {/* gap-3에서 gap-5으로 늘려 간격 확보 */}
-        <div className="flex items-center gap-5 flex-shrink-0 z-50">
+        {/* 📱 모바일에서는 간격을 좁혀서 공간 이탈 방지 조율 */}
+        <div className="flex items-center gap-1.5 sm:gap-5 flex-shrink-0 z-50">
           {/* md:hidden에서 lg:hidden으로 변경 (Z폴드 펼쳐도 전화버튼이 잘 보이도록 보완) */}
           {/* 패딩(px-5 py-2.5)과 글자 크기(text-sm)를 키워 어르신들이 누르기 쉽게 수정 */}
-          <a href="tel:031-912-9217" className="lg:hidden bg-emerald-700 text-white px-5 py-2.5 rounded-xl text-sm font-black hover:bg-emerald-800 transition-all shadow-md flex items-center gap-1.5 whitespace-nowrap">
-            📞 <span>전화상담</span>
+          {/* 📱 가로폭이 좁은 스마트폰에서는 단추 패딩을 미세하게 슬림화하여 화면 안쪽으로 안착 */}
+          <a href="tel:031-912-9217" className="lg:hidden bg-emerald-700 text-white px-2.5 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black hover:bg-emerald-800 transition-all shadow-md flex items-center gap-1 whitespace-nowrap">
+            📞 <span className="text-[11px] sm:text-sm">전화상담</span>
           </a>
 
           {/* flex md:hidden에서 flex lg:hidden으로 변경 */}
           {/* 버튼 내부 여백(p-1)을 조정하고 svg 크기를 w-7/h-7에서 w-9/h-9로 대폭 확대 */}
+          {/* 📱 모바일 뷰포트 정렬을 위해 w-7 sm:w-9 규격 유연화 */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="flex lg:hidden p-1 text-stone-600 hover:text-emerald-700 focus:outline-none"
+            className="flex lg:hidden p-1 text-stone-600 hover:text-emerald-700 focus:outline-none flex-shrink-0"
           >
             {isMobileMenuOpen ? (
-              <svg className="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              <svg className="w-7 sm:w-9 h-7 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
             ) : (
-              <svg className="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+              <svg className="w-7 sm:w-9 h-7 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
             )}
           </button>
         </div>
@@ -94,7 +102,8 @@ export default function Header() {
       </div>
 
       {/* md:hidden에서 lg:hidden으로 변경 */}
-      <div className={`lg:hidden fixed top-24 left-0 w-full bg-white border-b border-stone-200 shadow-xl transition-all duration-300 ease-in-out overflow-hidden z-40 ${isMobileMenuOpen ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0 pointer-events-none"}`}>
+      {/* 📱 모바일 상단 바 높이에 맞춰서 top-20과 top-24 반응형 위치 조정 */}
+      <div className={`lg:hidden fixed top-20 sm:top-24 left-0 w-full bg-white border-b border-stone-200 shadow-xl transition-all duration-300 ease-in-out overflow-hidden z-40 ${isMobileMenuOpen ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0 pointer-events-none"}`}>
         <div className="px-5 py-4 flex flex-col gap-4 max-h-[70vh] overflow-y-auto">
           {menuItems.map((menu) => (
             <div key={menu.name} className="flex flex-col border-b border-stone-100 pb-3 last:border-none last:pb-0">
