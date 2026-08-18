@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - echo Installing source dependencies...
+      - npm install
+  pre_build:
+    commands:
+      - echo Creating .env file from AWS Environment Variables...
+      - echo "VITE_API_KEY=${VITE_API_KEY}" >> .env
+      - echo "VITE_ANOTHER_VAR=${VITE_ANOTHER_VAR}" >> .env
+  build:
+    commands:
+      - echo Build started on `date`
+      - npm run build
+artifacts:
+  files:
+    - '**/*'
+  base-directory: dist
