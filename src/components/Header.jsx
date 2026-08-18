@@ -30,11 +30,14 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-stone-200 shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 h-24 flex items-center justify-between gap-4">
+      {/* 🛠️ [핵심 수정] w-full을 추가하여 모바일 화면 크기에 맞춰 내부 요소들이 절대 화면 밖으로 밀리지 않도록 고정했습니다. */}
+      <div className="w-full max-w-6xl mx-auto px-4 h-24 flex items-center justify-between gap-2">
         
-        <Link to="/" className="flex items-center gap-2 flex-shrink-0 cursor-pointer z-50">
-          <img src="/images/logo-symbol-silhouette.png" alt="느티나무 심볼" className="h-12 w-auto object-contain" />
-          <img src="/images/logo-text-green.png" alt="느티나무재가복지센터" className="h-8 w-auto object-contain ml-0.5" />
+        {/* 좌측 로고 영역 */}
+        <Link to="/" className="flex items-center gap-1.5 flex-shrink cursor-pointer z-50 min-w-0">
+          <img src="/images/logo-symbol-silhouette.png" alt="느티나무 심볼" className="h-10 sm:h-12 w-auto object-contain flex-shrink-0" />
+          {/* 아주 작은 모바일 해상도(xs)에서 텍스트 로고 크기가 버튼을 밀어내지 않도록 반응형 폰트/높이를 최적화했습니다 */}
+          <img src="/images/logo-text-green.png" alt="느티나무재가복지센터" className="h-[26px] sm:h-8 w-auto object-contain ml-0.5 flex-shrink min-w-0" />
         </Link>
 
         {/* hidden md:flex에서 hidden lg:flex로 변경 */}
@@ -70,10 +73,11 @@ export default function Header() {
         </nav>
 
         {/* gap-3에서 gap-5으로 늘려 간격 확보 */}
-        <div className="flex items-center gap-5 flex-shrink-0 z-50">
+        {/* 오른쪽 버튼 그룹이 무조건 화면 우측 정렬을 유지하도록 flex-shrink-0을 단단히 고정했습니다 */}
+        <div className="flex items-center gap-2.5 sm:gap-5 flex-shrink-0 z-50">
           {/* md:hidden에서 lg:hidden으로 변경 (Z폴드 펼쳐도 전화버튼이 잘 보이도록 보완) */}
           {/* 패딩(px-5 py-2.5)과 글자 크기(text-sm)를 키워 어르신들이 누르기 쉽게 수정 */}
-          <a href="tel:031-912-9217" className="lg:hidden bg-emerald-700 text-white px-5 py-2.5 rounded-xl text-sm font-black hover:bg-emerald-800 transition-all shadow-md flex items-center gap-1.5 whitespace-nowrap">
+          <a href="tel:031-912-9217" className="lg:hidden bg-emerald-700 text-white px-4 py-2.5 rounded-xl text-xs sm:text-sm font-black hover:bg-emerald-800 transition-all shadow-md flex items-center gap-1.5 whitespace-nowrap">
             📞 <span>전화상담</span>
           </a>
 
@@ -84,9 +88,9 @@ export default function Header() {
             className="flex lg:hidden p-1 text-stone-600 hover:text-emerald-700 focus:outline-none"
           >
             {isMobileMenuOpen ? (
-              <svg className="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              <svg className="w-8 h-8 sm:w-9 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
             ) : (
-              <svg className="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+              <svg className="w-8 h-8 sm:w-9 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
             )}
           </button>
         </div>
