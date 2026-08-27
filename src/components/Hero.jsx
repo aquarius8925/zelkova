@@ -62,7 +62,7 @@ export default function Hero() {
             <span className="block md:inline">어르신에게는 편안한 하루를,</span>
             <span className="hidden md:inline"> </span>
             <br className="hidden md:block" />
-            <span className="block md:inline">가족에게는 든든한 안심을 드립니다</span>
+            <span className="block md:inline">가족에게는 든든한 안심을</span>
           </h1>
         </div>
         
